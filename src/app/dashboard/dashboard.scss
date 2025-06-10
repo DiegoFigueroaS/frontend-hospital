@@ -1,0 +1,32 @@
+mat-toolbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  z-index: 1000;
+  background: var(--mdc-theme-primary, #22223b);
+  color: var(--mdc-theme-on-primary, #fff);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.16);
+}
+
+body, .dashboard-root, .dashboard-content {
+  margin: 0;
+  padding: 0;
+}
+
+.dashboard-content {
+  margin: 80px auto 32px auto;
+  max-width: 600px;
+  padding: 24px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+.dashboard-content {
+  margin: 32px auto;
+  max-width: 600px;
+  padding: 24px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}

@@ -1,0 +1,9 @@
+<mat-toolbar color="primary">
+  <span>Dashboard</span>
+  <span style="flex: 1 1 auto;"></span>
+  <button mat-button (click)="logout()">Logout</button>
+</mat-toolbar>
+<div class="dashboard-content">
+  <h2>Bienvenido, {{ user?.full_name || user?.email }}</h2>
+  <pre>{{ user | json }}</pre>
+</div>

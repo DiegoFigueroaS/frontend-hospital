@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -34,7 +35,14 @@ export class Signup {
   confirmPassword: string = '';
   loading = false;
 
-  constructor(private authService: AuthService, private snackBar: MatSnackBar) {}
+  constructor(private authService: AuthService, private snackBar: MatSnackBar, private router: Router) {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      const storedUser = localStorage.getItem('user');
+      if (storedUser) {
+        this.router.navigate(['/dashboard']);
+      }
+    }
+  }
 
   async onSignup(): Promise<void> {
     if (!this.full_name || !this.phone || !this.email || !this.password || this.password !== this.confirmPassword) {
