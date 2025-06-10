@@ -1,0 +1,53 @@
+<div class="appointment-form-container" *ngIf="hospitals && doctors">
+  <form (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Hospital</mat-label>
+      <mat-select [(ngModel)]="selectedHospitalId" name="hospital" required (selectionChange)="onHospitalChange()" #hospitalInput="ngModel" style="color: #000 !important;">
+        <mat-option *ngFor="let h of hospitals" [value]="h.id">
+          {{ h.name }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="hospitalInput.invalid && (hospitalInput.dirty || hospitalInput.touched)">
+        Por favor selecciona un hospital
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Doctor</mat-label>
+      <mat-select [(ngModel)]="selectedDoctorId" name="doctor" required #doctorInput="ngModel" style="color: #000 !important;">
+        <mat-option *ngFor="let d of filteredDoctors" [value]="d.id">
+          {{ d.full_name }} ({{ getDoctorSpecialty(d) }})
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="doctorInput.invalid && (doctorInput.dirty || doctorInput.touched)">
+        Por favor selecciona un doctor
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Fecha</mat-label>
+      <input matInput [matDatepicker]="picker" [(ngModel)]="date" name="date" required #dateInput="ngModel">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="dateInput.invalid && (dateInput.dirty || dateInput.touched)">
+        Por favor selecciona una fecha
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Hora</mat-label>
+      <input matInput type="time" [(ngModel)]="time" name="time" required #timeInput="ngModel">
+      <mat-error *ngIf="timeInput.invalid && (timeInput.dirty || timeInput.touched)">
+        Por favor selecciona una hora
+      </mat-error>
+    </mat-form-field>
+
+    <button mat-raised-button 
+            color="primary" 
+            type="submit" 
+            class="full-width-btn"
+            [disabled]="!isFormValid()">
+      Crear cita
+    </button>
+  </form>
+</div>

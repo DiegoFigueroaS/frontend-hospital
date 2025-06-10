@@ -1,32 +1,462 @@
+/* Estilos del toolbar */
+.mat-toolbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: #22223b;
+  color: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.16);
+  height: 64px;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  
+  .spacer {
+    flex: 1 1 auto;
+  }
+  
+  button {
+    margin-left: 8px;
+    color: white;
+    
+    mat-icon {
+      color: white;
+    }
+  }
+  
+  .mat-mdc-button:not(:disabled) {
+    color: white;
+  }
+}
+
+// Estilos generales
+body, .dashboard-root {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background-color: #f5f5f5;
+  font-family: 'Roboto', sans-serif;
+}
+
+.dashboard-container {
+  margin-top: 250px; 
+  padding: 24px;
+  min-height: calc(100vh - 80px);
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  
+  @media (max-width: 600px) {
+    margin-top: 72px;
+    padding: 16px;
+    min-height: calc(100vh - 72px);
+  }
+}
+
+.dashboard-content {
+  width: 100%;
+  max-width: 1400px;
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard-header {
+  margin-bottom: 24px;
+  text-align: center;
+  padding: 16px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  
+  h2 {
+    color: #22223b;
+    margin: 0 0 12px 0;
+    font-size: 28px;
+    font-weight: 600;
+  }
+  
+  .welcome-message {
+    color: #555;
+    font-size: 16px;
+    margin: 0;
+    line-height: 1.5;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+}
+
+.dashboard-main-row {
+  display: flex;
+  gap: 24px;
+  width: 100%;
+  flex: 1;
+  
+  @media (max-width: 960px) {
+    flex-direction: column;
+  }
+}
+
+.dashboard-left, .dashboard-right {
+  flex: 1;
+  background: white;
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  min-height: 60vh;
+  max-height: 75vh;
+  
+  h3 {
+    color: #3f51b5;
+    margin-top: 0;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #eee;
+    font-size: 20px;
+    font-weight: 500;
+  }
+}
+
+// Estilos para el diálogo de información del usuario
+.dialog-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  
+  .dialog-content {
+    background: white;
+    padding: 24px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    
+    h2 {
+      margin-top: 0;
+      color: #3f51b5;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    
+    .user-info {
+      margin: 20px 0;
+      
+      p {
+        margin: 12px 0;
+        color: #333;
+        font-size: 16px;
+        
+        strong {
+          color: #555;
+          margin-right: 8px;
+        }
+      }
+    }
+    
+    .close-button {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      min-width: auto;
+      padding: 0;
+      line-height: 1;
+      
+      mat-icon {
+        font-size: 24px;
+        width: 24px;
+        height: 24px;
+      }
+    }
+  }
+}
+
+// Estilos para los formularios
+.full-width {
+  width: 100%;
+  margin-bottom: 20px;
+  
+  .mat-form-field-wrapper {
+    padding-bottom: 0;
+  }
+  
+  .mat-form-field-outline {
+    background-color: white;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+  
+  .mat-form-field-label {
+    color: rgba(0, 0, 0, 0.6);
+  }
+  
+  .mat-form-field-underline {
+    display: none;
+  }
+  
+  .mat-form-field-infix {
+    padding: 0.5em 0;
+    border-top: 0;
+  }
+  
+  input.mat-input-element {
+    margin-top: 0.3em;
+  }
+}
+
+// Estilos para los botones
+button[mat-raised-button] {
+  width: 100%;
+  padding: 12px 0;
+  font-size: 16px;
+  font-weight: 500;
+  margin-top: 16px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  
+  &[color='primary'] {
+    background-color: #3f51b5;
+    color: white;
+    
+    &:hover:not([disabled]) {
+      background-color: #303f9f;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+  }
+  
+  &:disabled {
+    background-color: #e0e0e0;
+    color: #9e9e9e;
+    cursor: not-allowed;
+  }
+  
+  mat-icon {
+    margin-right: 8px;
+  }
+}
+
+// Estilos para las listas de citas
+.mat-list-base {
+  padding: 0;
+  
+  .mat-list-item {
+    border-bottom: 1px solid #eee;
+    padding: 16px 0;
+    color: #333;
+    
+    &:last-child {
+      border-bottom: none;
+    }
+    
+    h4 {
+      margin: 0 0 4px 0;
+      font-size: 16px;
+      font-weight: 500;
+    }
+    
+    p {
+      margin: 4px 0 0 0;
+      font-size: 14px;
+      color: #666;
+    }
+  }
+}
+
+// Ajustes responsivos
+@media (max-width: 960px) {
+  .dashboard-container {
+    padding: 16px;
+  }
+  
+  .dashboard-main-row {
+    flex-direction: column;
+  }
+  
+  .dashboard-left, .dashboard-right {
+    width: 100%;
+    margin-bottom: 16px;
+    min-height: auto;
+    max-height: none;
+  }
+  
+  .dialog-content {
+    width: 95%;
+    padding: 20px;
+  }
+}
+
+// Estilos para el toolbar
 mat-toolbar {
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  
+  .spacer {
+    flex: 1 1 auto;
+  }
+  
+  button[mat-icon-button] {
+    margin-left: 8px;
+    color: white;
+    
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+  }
+  
+  button[mat-button] {
+    color: white;
+    display: flex;
+    align-items: center;
+    
+    mat-icon {
+      margin-right: 4px;
+    }
+    
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+  }
+}
+
+button[mat-raised-button] mat-icon {
+  margin-right: 4px;
+}
+
+.user-info-modal-backdrop {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
-  z-index: 1000;
-  background: var(--mdc-theme-primary, #22223b);
-  color: var(--mdc-theme-on-primary, #fff);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.16);
+  height: 100vh;
+  background: rgba(0,0,0,0.35);
+  z-index: 2500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-body, .dashboard-root, .dashboard-content {
+.dashboard-content {
+  display: flex;
+  flex-direction: column;
+  width: 90vw;
+  padding: 24px;
+  background: transparent;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+.dashboard-main-row {
+  display: flex;
+  flex-direction: row;
+  height: 90vh;
+  gap: 32px;
+}
+
+.dashboard-left, .dashboard-right {
+  flex: 1 1 0;
+  min-width: 0;
+  padding: 24px 16px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  overflow-y: auto;
+  max-height: 90vh;
+}
+
+.dashboard-left {
+  margin-right: 8px;
+}
+.dashboard-right {
+  margin-left: 8px;
+}
+
+
+.dashboard-header {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 24px;
+}
+
+.appt-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+button[mat-raised-button] mat-icon {
+  margin-right: 4px;
+}
+
+.user-info-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.35);
+  z-index: 2500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.user-info-modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+}
+.modal-content {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.18);
+  max-width: 420px;
+  width: 90vw;
+  padding: 32px 24px 24px 24px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.close-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+h3 {
+  margin-top: 0;
+  margin-bottom: 18px;
+  color: #22223b;
+}
+pre {
+  background: #f5f5f5;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #333;
+  overflow-x: auto;
+  width: 100%;
   margin: 0;
-  padding: 0;
 }
-
-.dashboard-content {
-  margin: 80px auto 32px auto;
-  max-width: 600px;
-  padding: 24px;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-}
-.dashboard-content {
-  margin: 32px auto;
-  max-width: 600px;
-  padding: 24px;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+@media (max-width: 600px) {
+  .modal-content {
+    padding: 16px 6px 8px 6px;
+    max-width: 98vw;
+  }
 }

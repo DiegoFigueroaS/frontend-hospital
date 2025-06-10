@@ -1,0 +1,69 @@
+<div class="appointments-container">
+  <div *ngIf="appointments?.length; else noAppointments" class="appointments-grid">
+    <div *ngFor="let appt of appointments" class="appointment-card">
+      <div class="appointment-header">
+        <h3 class="hospital-name">{{ appt.hospital?.name || 'Hospital no especificado' }}</h3>
+        <span class="status-badge" [ngClass]="getStatusClass(appt.status?.status_name)">
+          {{ appt.status?.status_name || 'Pendiente' }}
+        </span>
+      </div>
+      
+      <div class="appointment-body">
+        <div class="info-row">
+          <span class="info-icon">📅</span>
+          <div class="info-content">
+            <span class="info-label">Fecha y hora</span>
+            <span class="info-value">
+              {{ appt.appointment_date | date:'fullDate' | titlecase }}
+              <span *ngIf="appt.appointment_time"> • {{ appt.appointment_time }}</span>
+            </span>
+          </div>
+        </div>
+        
+        <div class="info-row">
+          <span class="info-icon">👨‍⚕️</span>
+          <div class="info-content">
+            <span class="info-label">Médico</span>
+            <span class="info-value">
+              Dr(a). {{ appt.doctor?.full_name || 'No asignado' }}
+              <span *ngIf="appt.doctor?.specialty_name" class="specialty">
+                {{ appt.doctor.specialty_name }}
+              </span>
+            </span>
+          </div>
+        </div>
+        
+        <div class="info-row" *ngIf="appt.diagnosis?.diagnosis_description">
+          <span class="info-icon">💊</span>
+          <div class="info-content">
+            <span class="info-label">Diagnóstico</span>
+            <span class="info-value diagnosis">
+              {{ appt.diagnosis.diagnosis_description }}
+            </span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="appointment-actions" *ngIf="canCancel(appt)">
+        <button class="cancel-btn" (click)="cancelAppointment(appt.id)">
+          <span class="btn-icon">✕</span>
+          <span class="btn-text">Cancelar cita</span>
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <ng-template #noAppointments>
+    <div class="no-appointments">
+      <div class="empty-state">
+        <span class="empty-icon">📅</span>
+        <h3>No tienes citas programadas</h3>
+        <p>Parece que aún no has agendado ninguna cita médica.</p>
+        <button class="primary-btn" (click)="navigateToAppointment()">
+          <span class="btn-icon">+</span>
+          <span class="btn-text">Agendar cita</span>
+        </button>
+      </div>
+    </div>
+  </ng-template>
+</div>

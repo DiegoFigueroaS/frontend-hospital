@@ -1,0 +1,9 @@
+<div class="user-info-modal" *ngIf="open">
+  <div class="modal-content">
+    <button mat-icon-button class="close-btn" (click)="close()">
+      <mat-icon>close</mat-icon>
+    </button>
+    <h3>Información del usuario</h3>
+    <pre>{{ user | json }}</pre>
+  </div>
+</div>

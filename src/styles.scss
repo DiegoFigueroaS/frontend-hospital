@@ -13,6 +13,47 @@ body {
   justify-content: center;
 }
 
+/* Estilos globales para inputs y selects */
 input, .mat-input-element {
-  color: #111 !important;
+  color: #000 !important;
+}
+
+/* Estilos para selects de Angular Material */
+.mat-select-value,
+.mat-select-arrow,
+.mat-select-value-text,
+.mat-select-placeholder {
+  color: #000 !important;
+}
+
+/* Estilos para el panel desplegable */
+.mat-select-panel {
+  .mat-option {
+    color: #000 !important;
+    
+    &.mat-selected:not(.mat-option-disabled) {
+      color: #3f51b5 !important;
+    }
+  }
+}
+
+/* Sobrescribir estilos del form field */
+.mat-form-field {
+  .mat-form-field-label {
+    color: rgba(0, 0, 0, 0.6) !important;
+  }
+  
+  .mat-form-field-underline {
+    background-color: rgba(0, 0, 0, 0.12) !important;
+  }
+  
+  &.mat-focused {
+    .mat-form-field-label {
+      color: #3f51b5 !important;
+    }
+    
+    .mat-form-field-ripple {
+      background-color: #3f51b5 !important;
+    }
+  }
 }

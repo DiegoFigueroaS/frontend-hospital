@@ -1,9 +1,49 @@
 <mat-toolbar color="primary">
-  <span>Dashboard</span>
-  <span style="flex: 1 1 auto;"></span>
-  <button mat-button (click)="logout()">Logout</button>
+  <span>Dashboard Hospital</span>
+  <span class="spacer"></span>
+  <button mat-icon-button (click)="showUserInfo()" matTooltip="Información del usuario">
+    <mat-icon>info</mat-icon>
+  </button>
+  <button mat-button (click)="logout()">
+    <mat-icon>logout</mat-icon>
+    Cerrar sesión
+  </button>
 </mat-toolbar>
-<div class="dashboard-content">
-  <h2>Bienvenido, {{ user?.full_name || user?.email }}</h2>
-  <pre>{{ user | json }}</pre>
+
+<!-- Diálogo de información del usuario -->
+<ng-container *ngIf="showUserInfoDialog">
+  <div class="dialog-overlay" (click)="closeUserInfo()">
+    <div class="dialog-content" (click)="$event.stopPropagation()">
+      <h2>Información del Usuario</h2>
+      <div *ngIf="user" class="user-info">
+        <p><strong>Nombre:</strong> {{ user.full_name }}</p>
+        <p *ngIf="user.role"><strong>Rol:</strong> {{ user.role }}</p>
+        <p *ngIf="user.phone"><strong>Teléfono:</strong> {{ user.phone }}</p>
+      </div>
+      <button mat-button (click)="closeUserInfo()" class="close-button">Cerrar</button>
+    </div>
+  </div>
+</ng-container>
+
+<div class="dashboard-container">
+  <div class="dashboard-content">
+    <div class="dashboard-header">
+      <h2>Bienvenido, {{ user?.full_name || user?.email }}</h2>
+    </div>
+    
+    <div class="dashboard-main-row">
+      <div class="dashboard-left">
+        <h3>Nueva cita médica</h3>
+        <app-medical-appointment-create 
+          [patientId]="user?.id"
+          (appointmentCreated)="appointmentsList.loadAppointments()">
+        </app-medical-appointment-create>
+      </div>
+      
+      <div class="dashboard-right">
+        <h3>Tus citas médicas</h3>
+        <app-medical-appointments-list #appointmentsList [userId]="user?.id"></app-medical-appointments-list>
+      </div>
+    </div>
+  </div>
 </div>

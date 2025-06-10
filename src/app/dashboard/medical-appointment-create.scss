@@ -1,0 +1,170 @@
+.appointment-form-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 32px 24px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 16px 0 rgba(0,0,0,0.08);
+
+  h2 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 24px;
+    font-size: 24px;
+    font-weight: 500;
+  }
+}
+
+.full-width {
+  width: 100%;
+}
+
+.full-width-btn {
+  width: 100%;
+  border-radius: 8px;
+  min-height: 48px;
+  margin-top: 16px;
+  font-size: 16px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+mat-form-field {
+  margin-bottom: 16px;
+  display: block;
+  
+  .mat-form-field-wrapper {
+    padding-bottom: 0;
+  }
+  
+  .mat-form-field-outline {
+    background-color: #fff;
+  }
+  
+  .mat-form-field-label {
+    color: #666 !important;
+  }
+  
+  .mat-input-element {
+    color: #000 !important;
+    caret-color: #3f51b5;
+  }
+  
+  .mat-form-field-appearance-outline .mat-form-field-outline {
+    color: rgba(0, 0, 0, 0.12);
+  }
+  
+  .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+    color: #3f51b5;
+  }
+  
+  .mat-input-element::placeholder {
+    color: rgba(0, 0, 0, 0.6) !important;
+  }
+  
+  .mat-input-element::-moz-selection {
+    background: #3f51b5;
+    color: white;
+  }
+  
+  .mat-input-element::selection {
+    background: #3f51b5;
+    color: white;
+  }
+  
+  // Estilos para los campos de selección
+  .mat-select-value {
+    color: #000 !important;
+  }
+  
+  .mat-select-value-text {
+    color: #000 !important;
+  }
+  
+  .mat-select-arrow {
+    color: rgba(0, 0, 0, 0.87);
+  }
+  
+  // Forzar el color del texto en los selects
+  .mat-select {
+    .mat-select-value,
+    .mat-select-arrow,
+    .mat-select-placeholder {
+      color: #000 !important;
+    }
+  }
+  
+  // Estilo para el panel de opciones
+  .mat-select-panel {
+    .mat-option {
+      color: #000 !important;
+      
+      &.mat-selected:not(.mat-option-disabled) {
+        color: #3f51b5 !important;
+      }
+      
+      &:hover:not(.mat-option-disabled) {
+        background: rgba(63, 81, 181, 0.1);
+      }
+      
+      .mat-option-text {
+        color: inherit !important;
+      }
+    }
+  }
+  
+  // Asegurar que el texto del select sea negro
+  ::ng-deep {
+    .mat-form-field.mat-form-field-type-mat-select {
+      .mat-form-field-infix {
+        color: #000 !important;
+      }
+      
+      .mat-select {
+        &-value {
+          color: #000 !important;
+          
+          &-text {
+            color: #000 !important;
+          }
+        }
+        
+        &-arrow {
+          color: rgba(0, 0, 0, 0.87) !important;
+        }
+      }
+      
+      .mat-form-field-label {
+        color: rgba(0, 0, 0, 0.6) !important;
+      }
+    }
+    
+    // Estilo para el panel desplegable
+    .mat-select-panel {
+      .mat-option {
+        color: #000 !important;
+        
+        &.mat-selected:not(.mat-option-disabled) {
+          color: #3f51b5 !important;
+        }
+      }
+    }
+  }
+  
+  .mat-form-field-outline-thick {
+    color: #3f51b5;
+  }
+  
+  .mat-form-field-outline-start,
+  .mat-form-field-outline-gap,
+  .mat-form-field-outline-end {
+    border-width: 1px !important;
+  }
+}
+
+.mat-error {
+  font-size: 12px;
+  margin-top: 4px;
+  color: #f44336;
+}
