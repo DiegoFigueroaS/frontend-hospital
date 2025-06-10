@@ -12,7 +12,14 @@
   justify-content: center;
 }
 
-
+.full-width-btn {
+  width: 100%;
+  border-radius: 16px;
+  min-height: 56px;
+  margin-top: 16px;
+  margin-bottom: 8px;
+  box-sizing: border-box;
+}
 
 .full-width {
   width: 100%;
@@ -47,4 +54,13 @@ mat-form-field {
 .switch-link {
   margin-top: 16px;
   text-align: center;
+}
+
+.snackbar-success {
+  background: #43a047 !important;
+  color: #fff !important;
+}
+.snackbar-error {
+  background: #e53935 !important;
+  color: #fff !important;
 }
