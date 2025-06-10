@@ -27,6 +27,8 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 })
 
 export class Signup {
+  full_name: string = '';
+  phone: string = '';
   email: string = '';
   password: string = '';
   confirmPassword: string = '';
@@ -34,21 +36,48 @@ export class Signup {
 
   constructor(private authService: AuthService, private snackBar: MatSnackBar) {}
 
-  async onSignup(form: any) {
-    console.log('form.value:', form.value);
-    console.log('form.invalid:', form.invalid);
-    if (form.invalid || this.password !== this.confirmPassword) {
-      this.snackBar.open('Verifica los datos y que las contraseñas coincidan', 'Cerrar', { duration: 4000, panelClass: 'snackbar-error', horizontalPosition: 'center', verticalPosition: 'top' });
+  async onSignup(): Promise<void> {
+    if (!this.full_name || !this.phone || !this.email || !this.password || this.password !== this.confirmPassword) {
+      this.snackBar.open('Verifica los datos y que las contraseñas coincidan', 'Cerrar', {
+        duration: 4000,
+        panelClass: 'snackbar-error',
+        horizontalPosition: 'center',
+        verticalPosition: 'top'
+      });
+      return;
+    }
+
+    // Obtener user_type_id para Patient
+    let user_type_id = '';
+    try {
+      const res = await fetch('http://localhost:2426/user-types');
+      const types = await res.json();
+      const patientType = types.find((t: any) => t.type_name.toLowerCase() === 'patient');
+      if (!patientType) throw new Error('No se encontró tipo Patient');
+      user_type_id = patientType.id;
+    } catch (e) {
+      this.snackBar.open('Error obteniendo tipo de usuario Patient', 'Cerrar', {
+        duration: 4000,
+        panelClass: 'snackbar-error',
+        horizontalPosition: 'center',
+        verticalPosition: 'top'
+      });
       return;
     }
     this.loading = true;
     try {
       // Puedes expandir userData con más campos si tu formulario crece
       console.log('Email enviado a Firebase:', this.email);
-      console.log('typeof email:', typeof this.email, 'valor:', this.email);
-      console.log('typeof password:', typeof this.password, 'valor:', this.password);
-      console.log('typeof confirmPassword:', typeof this.confirmPassword, 'valor:', this.confirmPassword);
-      await this.authService.signup(this.email, this.password, { full_name: '', phone: '' });
+    console.log('typeof email:', typeof this.email, 'valor:', this.email);
+    console.log('typeof password:', typeof this.password, 'valor:', this.password);
+    console.log('typeof confirmPassword:', typeof this.confirmPassword, 'valor:', this.confirmPassword);
+      await this.authService.signup(this.email, this.password, {
+        full_name: this.full_name,
+        phone: this.phone,
+        user_type_id,
+        userHospitals: [],
+        userClinics: []
+      });
       this.snackBar.open('¡Registro exitoso! Ahora puedes iniciar sesión.', 'Cerrar', { duration: 4000, panelClass: 'snackbar-success', horizontalPosition: 'center', verticalPosition: 'top' });
     } catch (e: any) {
       this.snackBar.open(e.message || 'Error en el registro', 'Cerrar', { duration: 4000, panelClass: 'snackbar-error', horizontalPosition: 'center', verticalPosition: 'top' });

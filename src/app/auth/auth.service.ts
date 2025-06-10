@@ -4,7 +4,7 @@ import { auth } from '../firebase';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  backendUrl = 'http://localhost:3000'; // Cambia esto si tu backend usa otro puerto o dominio
+  backendUrl = 'http://localhost:2426'; // Cambia esto si tu backend usa otro puerto o dominio
 
   async signup(email: string, password: string, userData: any): Promise<any> {
     // 1. Crear usuario en Firebase

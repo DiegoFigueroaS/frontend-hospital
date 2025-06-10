@@ -33,14 +33,17 @@ export class Login {
 
   constructor(private authService: AuthService, private snackBar: MatSnackBar) {}
 
-  async onLogin(form: any) {
-    if (form.invalid) {
+  async onLogin(): Promise<void> {
+    if (!this.email || !this.password) {
       this.snackBar.open('Verifica los datos', 'Cerrar', { duration: 4000, panelClass: 'snackbar-error', horizontalPosition: 'center', verticalPosition: 'top' });
       return;
     }
     this.loading = true;
     try {
-      const user = await this.authService.login(this.email, this.password);
+      console.log('Email enviado a Firebase:', this.email);
+    console.log('typeof email:', typeof this.email, 'valor:', this.email);
+    console.log('typeof password:', typeof this.password, 'valor:', this.password);
+    const user = await this.authService.login(this.email, this.password);
       this.snackBar.open('¡Bienvenido, ' + (user.full_name || 'usuario') + '!', 'Cerrar', { duration: 4000, panelClass: 'snackbar-success', horizontalPosition: 'center', verticalPosition: 'top' });
       // Aquí puedes guardar el usuario en localStorage o navegar a otra ruta
     } catch (e: any) {

@@ -1,31 +1,57 @@
 <div class="signup-container">
-  <form #signupForm="ngForm" autocomplete="off" (ngSubmit)="onSignup(signupForm)">
+  <form autocomplete="off" (ngSubmit)="onSignup()">
     <h2>Crear cuenta</h2>
-    <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Email</mat-label>
-      <input matInput type="email" name="email" [(ngModel)]="email" required email #email="ngModel" autocomplete="email">
-      <mat-error *ngIf="email.invalid && (email.dirty || email.touched)">
-        El email es requerido y debe ser válido
-      </mat-error>
-    </mat-form-field>
-    <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Contraseña</mat-label>
-      <input matInput type="password" name="password" [(ngModel)]="password" required minlength="6" #password="ngModel" autocomplete="new-password">
-      <mat-error *ngIf="password.invalid && (password.dirty || password.touched)">
-        La contraseña es requerida (mínimo 6 caracteres)
-      </mat-error>
-    </mat-form-field>
-    <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Confirmar contraseña</mat-label>
-      <input matInput type="password" name="confirmPassword" [(ngModel)]="confirmPassword" required minlength="6" #confirmPassword="ngModel" autocomplete="new-password">
-      <mat-error *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)">
-        Debes confirmar la contraseña
-      </mat-error>
-    </mat-form-field>
+
+    <div class="form-row">
+      <div class="form-col">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Nombre completo</mat-label>
+          <input matInput type="text" name="full_name" [(ngModel)]="full_name" required #fullNameInput="ngModel" autocomplete="name">
+          <mat-error *ngIf="fullNameInput.invalid && (fullNameInput.dirty || fullNameInput.touched)">
+            El nombre completo es requerido
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Teléfono</mat-label>
+          <input matInput type="tel" name="phone" [(ngModel)]="phone" required #phoneInput="ngModel" autocomplete="tel">
+          <mat-error *ngIf="phoneInput.invalid && (phoneInput.dirty || phoneInput.touched)">
+            El teléfono es requerido
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="form-col">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" name="email" [(ngModel)]="email" required #emailInput="ngModel" autocomplete="email">
+          <mat-error *ngIf="emailInput.invalid && (emailInput.dirty || emailInput.touched)">
+            El email es requerido y debe ser válido
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Contraseña</mat-label>
+          <input matInput type="password" name="password" [(ngModel)]="password" required minlength="6" #passwordInput="ngModel" autocomplete="new-password">
+          <mat-error *ngIf="passwordInput.invalid && (passwordInput.dirty || passwordInput.touched)">
+            La contraseña es requerida (mínimo 6 caracteres)
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Confirmar contraseña</mat-label>
+          <input matInput type="password" name="confirmPassword" [(ngModel)]="confirmPassword" required minlength="6" #confirmPasswordInput="ngModel" autocomplete="new-password">
+          <mat-error *ngIf="confirmPasswordInput.invalid && (confirmPasswordInput.dirty || confirmPasswordInput.touched)">
+            Debes confirmar la contraseña
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
     <button mat-raised-button color="primary" type="submit" class="full-width-btn">Registrarse</button>
+
     <div class="switch-link">
       ¿Ya tienes cuenta?
-<button mat-button type="button" [routerLink]="['/login']">Inicia sesión</button>
+      <button mat-button type="button" [routerLink]="['/login']">Inicia sesión</button>
     </div>
   </form>
 </div>
