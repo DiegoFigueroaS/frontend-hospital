@@ -21,9 +21,8 @@
         </div>
         
         <div class="info-row">
-          <span class="info-icon">👨‍⚕️</span>
           <div class="info-content">
-            <span class="info-label">Médico</span>
+            <span class="info-label">Doctor</span>
             <span class="info-value">
               Dr(a). {{ appt.doctor?.full_name || 'No asignado' }}
               <span *ngIf="appt.doctor?.specialty_name" class="specialty">

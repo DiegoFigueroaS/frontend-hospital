@@ -5,8 +5,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { MedicalAppointmentsList } from './medical-appointments-list';
-import { MedicalAppointmentCreate } from './medical-appointment-create';
+import { MedicalAppointmentsList } from './apointmentlist/medical-appointments-list';
+import { MedicalAppointmentCreate } from './apointmentcreate/medical-appointment-create';
 
 @Component({
   selector: 'app-dashboard',

@@ -7,7 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-import { MedicalAppointmentsService } from './medical-appointments.service';
+import { MedicalAppointmentsService } from '../medical-appointments.service';
 
 @Component({
   selector: 'app-medical-appointment-create',

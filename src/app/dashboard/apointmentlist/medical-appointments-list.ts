@@ -4,7 +4,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
-import { MedicalAppointmentsService } from './medical-appointments.service';
+import { MedicalAppointmentsService } from '../medical-appointments.service';
 
 @Component({
   selector: 'app-medical-appointments-list',
@@ -45,7 +45,6 @@ export class MedicalAppointmentsList implements OnInit {
   }
 
   canCancel(appointment: any): boolean {
-    // Permitir cancelar solo si la cita está pendiente o confirmada
     const status = appointment.status?.status_name?.toLowerCase();
     return ['pending', 'confirmed'].includes(status);
   }
