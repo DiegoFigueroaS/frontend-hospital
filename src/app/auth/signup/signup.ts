@@ -55,7 +55,6 @@ export class Signup {
       return;
     }
 
-    // Obtener user_type_id para Patient
     let user_type_id = '';
     try {
       const res = await fetch('http://localhost:2426/user-types');
@@ -74,7 +73,6 @@ export class Signup {
     }
     this.loading = true;
     try {
-      // Puedes expandir userData con más campos si tu formulario crece
       console.log('Email enviado a Firebase:', this.email);
     console.log('typeof email:', typeof this.email, 'valor:', this.email);
     console.log('typeof password:', typeof this.password, 'valor:', this.password);

@@ -67,11 +67,8 @@ export class MedicalAppointmentsList implements OnInit {
     if (confirm('¿Estás seguro de que deseas cancelar esta cita? Esta acción no se puede deshacer.')) {
       try {
         await this.apptService.deleteAppointment(appointmentId);
-        // Mostrar mensaje de éxito
         alert('La cita ha sido cancelada correctamente.');
-        // Recargar la lista de citas
         await this.loadAppointments();
-        // Notificar al componente padre sobre la actualización
         this.appointmentsUpdated.emit();
       } catch (error) {
         console.error('Error al cancelar la cita:', error);

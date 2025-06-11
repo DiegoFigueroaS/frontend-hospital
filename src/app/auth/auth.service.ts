@@ -4,12 +4,10 @@ import { auth } from '../firebase';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  backendUrl = 'http://localhost:2426'; // Cambia esto si tu backend usa otro puerto o dominio
+  backendUrl = 'http://localhost:2426';
 
   async signup(email: string, password: string, userData: any): Promise<any> {
-    // 1. Crear usuario en Firebase
     const cred: UserCredential = await createUserWithEmailAndPassword(auth, email, password);
-    // 2. Guardar usuario en backend
     const res = await fetch(`${this.backendUrl}/users`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -20,9 +18,7 @@ export class AuthService {
   }
 
   async login(email: string, password: string): Promise<any> {
-    // 1. Login en Firebase
     const cred: UserCredential = await signInWithEmailAndPassword(auth, email, password);
-    // 2. Buscar usuario en backend por firebase_uid
     const res = await fetch(`${this.backendUrl}/users`);
     const users = await res.json();
     const user = users.find((u: any) => u.firebase_uid === cred.user.uid);

@@ -27,7 +27,6 @@ export class MedicalAppointmentCreate implements OnInit {
   date: string | Date = '';
   time: string = '';
 
-  // Estado fijo para las citas
   readonly APPOINTMENT_STATUS = {
     PENDING: '636091c7-1367-4822-84f0-eb429a9a523a'
   };
@@ -60,7 +59,6 @@ export class MedicalAppointmentCreate implements OnInit {
     this.filteredDoctors = this.doctors.filter((d: any) => {
       const hasMatchingHospital = d.userHospitals?.some((h: any) => {
         console.log(`Doctor ${d.id} - Hospital check:`, h, 'vs', selectedId);
-        // Comparar directamente el ID del hospital con el seleccionado
         return h && h.id === selectedId;
       });
       return hasMatchingHospital;
@@ -70,12 +68,10 @@ export class MedicalAppointmentCreate implements OnInit {
     this.selectedDoctorId = '';
   }
 
-  // Obtiene el nombre de la especialidad de un doctor
   getDoctorSpecialty(doctor: any): string {
     return doctor?.specialty?.specialty_name || 'Sin especialidad';
   }
 
-  // Verifica si el formulario es válido
   isFormValid(): boolean {
     return !!(this.selectedHospitalId && this.selectedDoctorId && this.date && this.time);
   }
@@ -97,13 +93,11 @@ export class MedicalAppointmentCreate implements OnInit {
       
       await this.service.createAppointment(appointmentData);
       
-      // Limpiar el formulario después de crear la cita
       this.selectedHospitalId = '';
       this.selectedDoctorId = '';
       this.date = '';
       this.time = '';
       
-      // Mostrar mensaje de éxito y notificar al componente padre
       alert('Cita creada exitosamente');
       this.appointmentCreated.emit();
     } catch (error) {

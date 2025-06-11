@@ -57,7 +57,6 @@ export class Dashboard {
 
   ngAfterViewInit() {
     this.checkAppointments();
-    // Verificar citas después de que se carguen
     if (this.appointmentsList) {
       this.appointmentsList.appointmentsUpdated.subscribe(() => {
         this.checkAppointments();
