@@ -26,10 +26,7 @@ export class MedicalAppointmentCreate implements OnInit {
   selectedDoctorId: string = '';
   date: string | Date = '';
   time: string = '';
-
-  readonly APPOINTMENT_STATUS = {
-    PENDING: '636091c7-1367-4822-84f0-eb429a9a523a'
-  };
+  statuses: any[] = [];
 
   constructor(private service: MedicalAppointmentsService) {}
 
@@ -40,6 +37,7 @@ export class MedicalAppointmentCreate implements OnInit {
     const allUsers = await this.service.getUsers();
     console.log('All users loaded:', allUsers);
     
+    this.statuses = await this.service.getAppointmentStatuses();
     this.doctors = allUsers.filter((u: any) => u.user_type?.type_name?.toLowerCase() === 'doctor');
     console.log('Filtered doctors:', this.doctors);
     
@@ -84,7 +82,7 @@ export class MedicalAppointmentCreate implements OnInit {
         hospital_id: this.selectedHospitalId,
         patient_id: this.patientId,
         doctor_id: this.selectedDoctorId,
-        appointment_status_id: this.APPOINTMENT_STATUS.PENDING,
+        appointment_status_id: this.statuses[0]?.id || '',
         appointment_date: this.date instanceof Date ? this.date.toISOString().split('T')[0] : this.date,
         appointment_time: this.time
       };

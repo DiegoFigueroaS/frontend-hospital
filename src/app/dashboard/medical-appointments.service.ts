@@ -60,4 +60,10 @@ export class MedicalAppointmentsService {
       throw error;
     }
   }
+
+  async getAppointmentStatuses(): Promise<any[]> {
+    const res = await fetch(`${this.api}/appointment-statuses`);
+    return await res.json();
+  }
+  
 }
